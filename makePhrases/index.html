@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>自动造句程序</title>
+</head>
+<body>
+<script>
+
+  function makePhrases() {
+    var words1 = ["hello","hi","goodmoring","hey","wow"];
+    var words2 = ["Oli","Oli Zhao","my friend","baby","my brother"];
+    var words3 = ["you are so cool","cool","good boy","good man","you are so kind"];
+    var rand1 = Math.floor(Math.random() * words1.length);
+    var rand2 = Math.floor(Math.random() * words2.length);
+    var rand3 = Math.floor(Math.random() * words3.length);
+    var phrase = words1[rand1] + " " + words2[rand2] + " " +words3[rand3] + "!" + "~刷新页面试试，我可以不停地自动造句~";
+    alert(phrase);
+  }
+  makePhrases();
+</script>
+</body>
+</html>

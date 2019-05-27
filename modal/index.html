@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>modal</title>
+    <style>
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        display: none;
+      }
+      .modal.show {
+        display: block;
+      }
+      .modal::before {
+        content: '';
+        display: block;
+        background-color: rgba(0,0,0,0.3);
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+      }
+      .modal>.container {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        background-color: #fff;
+      }
+      .modal>.container .header {
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+      }
+      .modal>.container .header::after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .modal>.container .close {
+        float: right;
+        cursor: pointer;
+      }
+      .modal>.container .content {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+      .modal>.container .footer {
+        padding: 10px;
+        text-align: center;
+      }
+      .btn {
+        border: 1px solid #ccc;
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="login" class="login modal-target">登录</button>
+    <button id="register" class="register modal-target">注册</button>
+    <button id="logout" class="logout modal-target"> 注销</button>
+
+
+    <div class="modal" data-target="login">
+      <div class="container">
+        <div class="header">
+          我是标题
+          <span class="close">X</span>
+        </div>
+
+        <div class="content">
+          <p> 我是内容</p>
+          <p> 我是内容</p>
+        </div>
+
+        <div class="footer">
+          <a href="#" class="btn">确定</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal" data-target="register">
+      <div class="container">
+        <div class="header">
+          我是标题
+          <span class="close">X</span>
+        </div>
+
+        <div class="content">
+          <p> 我是注册</p>
+          <p> 我是注册</p>
+        </div>
+
+        <div class="footer">
+          <a href="#" class="btn">确定</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal" data-target="logout">
+      <div class="container">
+        <div class="header">
+          我是标题
+          <span class="close">X</span>
+        </div>
+
+        <div class="content">
+          <p> 我是注销</p>
+          <p> 我是注册</p>
+        </div>
+
+        <div class="footer">
+          <a href="#" class="btn">确定</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      function $(selector){
+        return document.querySelector(selector)
+      }
+      function $$(selector){
+        return document.querySelectorAll(selector)
+      }
+      function bindBatch(nodeList, handler){
+        nodeList.forEach(node=>{
+          node.onclick = handler
+        })
+      }
+
+      bindBatch($$(".modal-target"), function(){
+        $(`.modal[data-target=${ this.id}]`).classList.add("show")
+      })
+      $$(".modal").forEach(modal=>{
+        modal.querySelector(".close").onclick = function() {
+          modal.classList.remove("show")
+        }
+
+        modal.querySelector(".footer .btn").onclick = function() {
+          modal.classList.remove("show")
+        }
+      })
+    </script>
+  </body>
+</html>
